@@ -96,6 +96,7 @@ function getLastWordInPlaceName(place) {
  */
 
 function getLargerNumber(arg1, arg2) {
+  let largestNumber = null;
   if (arg1 > arg2) {
     let largestNumber = arg1;
     return largestNumber;
