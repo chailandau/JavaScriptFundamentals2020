@@ -16,9 +16,16 @@ const accessingAnItem = () => {
 
 const addToAnArray = () => {
   const languages = ["JavaScript"]; // Do not change this line
+  /* Add three more items to the "languages" array here */
+
+  // Method 1
   languages.push("Python");
   languages.push("Java");
   languages.push("PHP");
+
+  // Method 2
+  languages = [...languages, "Python", "Java", "PHP"];
+
   return languages;
 };
 
@@ -28,11 +35,10 @@ const addToAnArray = () => {
  * @param {array} array2
  * @returns {array} an array that combines array1 and array2
  * @example combineArray(['Japan','China','India'], ['USA','UK']) // ['Japan','China','India','USA','UK']
- **/
+ */
 
 const combineArray = (array1, array2) => {
-  const array3 = [...array1, ...array2];
-  return array3;
+  return [...array1, ...array2];
 };
 
 /***
@@ -46,14 +52,8 @@ const combineArray = (array1, array2) => {
  */
 
 const createArrayOfFunctions = () => {
-  const additionFunction = (num1, num2) => {
-    return num1 + num2;
-  };
-
-  const subtractionFunction = (num1, num2) => {
-    return num1 - num2;
-  };
-  return [additionFunction, subtractionFunction];
+  let array = [(num1, num2) => num1 + num2, (num1, num2) => num1 - num2];
+  return array;
 };
 
 /**
@@ -66,13 +66,20 @@ const createArrayOfFunctions = () => {
  *
  **/
 const highestNumber = (numbers) => {
-  let number = -Infinity;
+  // Method 1: For loop
+  let highest;
   for (let i = 0; i < numbers.length; i++) {
-    if (number < numbers[i]) {
-      number = numbers[i];
-    }
+    let num = numbers[i];
+    if (num > highest || highest === undefined) highest = num;
   }
-  return number;
+
+  // Method 2: For ... of loop
+  let highest;
+  for (let num of numbers) {
+    if (num > highest || highest === undefined) highest = num;
+  }
+
+  return highest;
 };
 
 /**
@@ -112,6 +119,7 @@ const highestNumber = (numbers) => {
  */
 
 const findAndAbort = (arr, id) => {
+  // Method 1: For loop
   let match;
   for (let i = 0; i < arr.length; i++) {
     let person = arr[i];
@@ -121,6 +129,17 @@ const findAndAbort = (arr, id) => {
     }
   }
   return match;
+
+  // Method 2: For ... of loop
+  let match;
+  for (let person of arr) {
+    if (person.id === id) {
+      match = person;
+      break;
+    }
+  }
+
+  // return match;
 };
 
 /**
@@ -134,12 +153,17 @@ const findAndAbort = (arr, id) => {
  */
 
 const isPalindrome = (str) => {
-  let checkPalindrome = str.split("").reverse().join("");
-  if (str === checkPalindrome) {
-    return true;
-  } else {
-    return false;
+  // Method 1
+  let letters = str.split("");
+  let reverse = "";
+  for (let letter of letters) {
+    reverse = letter + reverse;
   }
+  return reverse === str;
+
+  // Method 2
+  const reverse = str.split("").reverse().join("");
+  return reverse === str;
 };
 
 /**
@@ -153,9 +177,8 @@ const isPalindrome = (str) => {
  */
 
 const removeDuplicates = (numbers) => {
-  let numSet = new Set(numbers);
-  let numArray = [...numSet];
-  return numArray;
+  const mySet = new Set(numbers);
+  return [...mySet];
 };
 
 /**
@@ -167,13 +190,12 @@ const removeDuplicates = (numbers) => {
  */
 
 const createDogObject = () => {
-  const myDog = {
-    name: "Diesel",
-    legs: "Four",
-    tails: "One",
-    owners: ["Di", "Drew", "Ethan"],
+  return {
+    name: "Sparky",
+    legs: 8,
+    tails: 2,
+    owners: ["Tim Burton"],
   };
-  return myDog;
 };
 
 /**
@@ -189,8 +211,8 @@ const accessAnItemObject = () => {
     shirt: "jersey",
     shoes: "cleats",
   };
-  // Write code here
-  return clothes["hat"];
+  // Only change this return statement
+  return clothes.hat;
 };
 
 /**
@@ -213,10 +235,9 @@ const updateStudentObject = () => {
     skills: [],
   };
   // Write code here
-  student["firstName"] = "Chai";
-  student["lastName"] = "Landau";
-  student["skills"] = ["web design", "web development", "graphic design"];
-
+  student.firstName = "Jamal";
+  student.lastName = "Taylor";
+  student.skills = ["JavaScript", "Teaching", "Being a permanent student"];
   return student;
 };
 
@@ -236,9 +257,7 @@ const returnObjectValues = () => {
   };
   // Add code here
   // HINT: you need to return an array
-  dogValues = Object.values(dog);
-  returnDogValues = [...dogValues];
-  return returnDogValues;
+  return Object.values(dog);
 };
 
 /**
@@ -253,8 +272,7 @@ const returnObjectValues = () => {
  */
 
 const combineObject = (obj1, obj2) => {
-  const bothNames = { ...obj1, ...obj2 };
-  return bothNames;
+  return { ...obj1, ...obj2 };
 };
 
 module.exports = {
