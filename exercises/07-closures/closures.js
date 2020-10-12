@@ -14,7 +14,14 @@
  *
  * (This is technically not a closure. It is here to prepare you for the next problems.)
  */
-const greeter = () => {};
+const greeter = () => {
+  let sayHelloObj = {
+    hello: (name) => {
+      return `Hello ${name}!`;
+    },
+  };
+  return sayHelloObj;
+};
 
 /**
  * As a programmer, I would like to be able to call on a function that returns an object that will allow me to
@@ -49,6 +56,29 @@ const greeter = () => {};
 
 const groceryList = () => {
   let groceryItems = [];
+  let groceryObj = {
+    add: (groceryItem) => {
+      if (typeof groceryItem === "string") {
+        groceryItems.push(groceryItem);
+      } else {
+        console.log("Must enter a string");
+      }
+    },
+    remove: (itemPosition) => {
+      if (
+        typeof itemPosition === "number" &&
+        itemPosition <= groceryItems.length
+      ) {
+        groceryItems.splice(itemPosition, 1);
+      } else {
+        console.log("Must enter a number, cannot exceed array length");
+      }
+    },
+    getList: () => {
+      return groceryItems;
+    },
+  };
+  return groceryObj;
 };
 
 /**
@@ -56,22 +86,40 @@ const groceryList = () => {
  * For those of you who are familiar with object-oriented programming, this exercise will use a similar pattern with "setters" and "getters".
  * @returns {Object} an object that has two methods. See comments below.
  */
+
+/**
+ * Create a private variable called "sum"
+ * @var {number}
+ */
+/**
+ * Return an object that has two methods:
+ *
+ * 1. The first is a "setter" function that a.) accepts a parameter of type number and
+ *    b.) adds that number to the "sum" above.
+ * @param {number}
+ *
+ * 2. The second function is a "getter" function
+ * that should return the value of "sum" above.
+ * @returns {number} the value of sum
+ */
+
 const calculator = () => {
-  /**
-   * Create a private variable called "sum"
-   * @var {number}
-   */
-  /**
-   * Return an object that has two methods:
-   *
-   * 1. The first is a "setter" function that a.) accepts a parameter of type number and
-   *    b.) adds that number to the "sum" above.
-   * @param {number}
-   *
-   * 2. The second function is a "getter" function
-   * that should return the value of "sum" above.
-   * @returns {number} the value of sum
-   */
+  let sum = 0;
+
+  let calculateObj = {
+    add: (num) => {
+      if (typeof num === "number") {
+        sum = num + sum;
+        return sum;
+      } else {
+        console.log("Must enter a number");
+      }
+    },
+    getSum: () => {
+      return sum;
+    },
+  };
+  return calculateObj;
 };
 
 /**
@@ -99,9 +147,24 @@ const calculator = () => {
  * guessRound2(3); // "You're too low!"
  * guessRound2(1); // "No more guesses. The answer was 0"
  */
-
-const guessingGame = (numberOfRounds) => {};
-
+const guessingGame = (numberOfRounds) => {
+  let guesses = 0;
+  const answer = Math.floor(Math.random() * 11);
+  let gameMechanics = (guess) => {
+    guesses += 1;
+    if (guesses > numberOfRounds) {
+      return `No more guesses. The answer was ${answer}`;
+    }
+    if (guess < answer) {
+      return "You're too low!";
+    } else if (guess > answer) {
+      return "You're too high!";
+    } else {
+      return "You got it!";
+    }
+  };
+  return gameMechanics;
+};
 module.exports = {
   greeter,
   groceryList,
