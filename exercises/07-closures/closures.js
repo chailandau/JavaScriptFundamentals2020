@@ -165,6 +165,7 @@ const guessingGame = (numberOfRounds) => {
   };
   return gameMechanics;
 };
+
 module.exports = {
   greeter,
   groceryList,

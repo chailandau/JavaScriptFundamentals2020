@@ -5,18 +5,29 @@
  * @param {function} callback
  * @returns {array} new array
  */
-const map = (arr, callback) => {};
+const map = (arr, callback) => {
+  let newArr = [];
+  for(let i = 0; i < arr.length; i++) {
+    let newValues = callback(arr[i], i, arr);
+    newArr.push(newValues);
+  }
+  return newArr;
+};
 
 /**
  * Multiplies each value in an array by two
  * @param {array} arr an array of numbers e.g. [1, 3, 5]
  * @returns {array} new array, with each value doubled e.g. [2, 5, 10]
  */
-const doubleValues = (arr) => {};
+const doubleValues = (arr) => {
+  return arr.map( (num) => {
+    return num * 2;
+    });
+};
 
 /**
  * Given an array nested with objects
- * and give the name of a shared key that is in all the nested objects,
+ * and given the name of a shared key that is in all the nested objects,
  * extract the values from the object that have the given key
  * and returns the extracted values in an array
  * @param {array} arr array of objects
@@ -32,7 +43,11 @@ const doubleValues = (arr) => {};
  * ];
  * extractKey(arrayOfNames, 'name'); // ['Ellie', 'Tim', 'Matt', 'Colt']
  */
-const extractKey = (arr, key) => {};
+const extractKey = (arr, key) => {
+  return arr.map( (object) => {
+return object[key];
+  });
+};
 
 module.exports = {
   map,
