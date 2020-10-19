@@ -31,9 +31,17 @@ let findLongestWordLength = (string) => {
  *   fearNotLetter("abcdefghijklmnopqrstuvwxyz") should return undefined.
  *
  */
-function fearNotLetter(str) {
-  return str;
+function fearNotLetter(string) {
+
+  for (let letter = 0; letter < string.length; letter++) {
+    if (string === "abcdefghijklmnopqrstuvwxyz") {
+      return undefined;
+    } else if (string.charCodeAt(letter) - string.charCodeAt(letter-1) > 1) {
+     return String.fromCharCode(string.charCodeAt(letter-1)+1);
+   } 
+ }
 }
+
 module.exports = {
   findLongestWordLength,
   fearNotLetter,
