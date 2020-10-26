@@ -31,13 +31,13 @@ let find = (arr, callback) => {
  * findUser(users, 1025);
  * // { id: 1025, username:"newyorkfarmer", email: "johndoe@example.com" }
  */
-let findUser = (arr, id) => {
-  let match1 = arr.find( (user) => {
+let findUser = (users, id) => {
+  let user = users.find( (user) => {
     if (user.id === id) {
       return user;
     }
   });
-  return match1;
+  return user;
 };
 
 module.exports = {

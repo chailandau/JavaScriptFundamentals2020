@@ -32,9 +32,13 @@ const flattenArray = (array) => {
  */
 const generateTally = (array) => {
   let tally = array.reduce( (howManyThings, thing) => {
-howManyThings[thing] = howManyThings[thing] ? howManyThings[thing] +1 : 1;
-return howManyThings;
-  },{});
+    if (howManyThings[thing]) {
+      howManyThings[thing] += 1;
+    } else {
+      howManyThings[thing] = 1;
+    }
+  return howManyThings;
+   },{});
   return tally;
 };
 
