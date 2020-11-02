@@ -10,3 +10,11 @@ h6 {
 .hidden {
   display: none;
 }
+
+[data-group="2"] {
+  display: none;
+}
+
+.visible {
+  display: table-row !important;
+}

@@ -31,10 +31,10 @@
   <body>
     <section class="bg-dark pt-4 pb-4 text-center">
       <!-- This button should alert the user when clicked on -->
-      <button class="btn btn-success btn-lg">Alert Me!</button>
+      <button class="btn btn-success btn-lg" id="alert_button">Alert Me!</button>
 
       <!-- This button should become disabled and display "Loading ..." when clicked on -->
-      <button class="btn btn-warning btn-lg">Charge My Credit Card</button>
+      <button class="btn btn-warning btn-lg" id="credit_card_button">Charge My Credit Card</button>
     </section>
 
     <section class="container pt-4 pb-4">
@@ -64,10 +64,10 @@
         <p>Highway I-87 is now closed.</p>
 
         <!-- This is the button that will toggle the comments -->
-        <p><button class="btn btn-primary">View Comments</button></p>
+        <p><button class="btn btn-primary" id="view_comments_button">View Comments</button></p>
 
         <!-- This is the comment section you need to toggle -->
-        <div class="card card-body hidden">
+        <div class="card card-body hidden" id="comments_section">
           <div class="media">
             <img
               src="https://s3.amazonaws.com/uifaces/faces/twitter/vivekprvr/128.jpg"
@@ -93,23 +93,25 @@
           class="form-control mb-3"
           placeholder="Enter mystery text here"
           aria-label="Enter mystery text here"
+          id="mystery_text"
         />
 
         <!-- Display whatever text the user types in the textbox above inside the <div></div> -->
-        <div class="card bg-warning"></div>
+        <div class="card bg-warning" id="display_mystery_text"></div>
       </div>
     </section>
 
     <section class="bg-dark pt-4 pb-1">
       <div class="container">
         <!-- Handle this form -->
-        <form class="form-group">
+        <form class="form-group" id="handle_this_form">
           <div class="input-group">
             <input
               type="search"
               placeholder="Search for oceans near Albany, NY"
               aria-label="Search for oceans near Albany, NY"
               class="form-control"
+              id = "targeted_input"
             />
             <div class="input-group-append">
               <button class="btn btn-success" type="submit">Search</button>
@@ -118,18 +120,18 @@
         </form>
 
         <!-- Display "No results for ___ found" inside of this <p></p> -->
-        <p class="text-white"></p>
+        <p class="text-white" id="form_results"></p>
       </div>
     </section>
 
     <section class="bg-light pt-4 pb-4">
       <div class="d-flex justify-content-center">
-        <form">
+        <form id="terms_form">
           <div class="form-inline">
             <div class="form-check form-check-inline">
               <!-- The "is-invalid" class here makes the "I Agree ..." red. The input should only have this class if the user did not agree to the terms and conditions -->
               <input
-                class="form-check-input is-invalid"
+                class="form-check-input"
                 type="checkbox"
                 id="terms"
               />
@@ -138,16 +140,16 @@
               >
             </div>
 
-            <button type="submit" class="btn btn-primary">Continue</button>
+            <button type="submit" class="btn btn-primary" id="terms_submit">Continue</button>
           </div>
 
           <!-- Only display me if the user did not agree to the terms and conditions -->
-          <div class="text-danger">
+          <div class="text-danger hidden" id="you_must_agree">
             <small>You must agree to the terms and conditions</small>
           </div>
 
           <!-- Only display after the user clicks on the "Continue" button and he has agreed to the terms -->
-          <div class="text-success">
+          <div class="text-success hidden" id="thanks_for_agreeing">
             <small>Thank you for signing up!</small>
           </div>
         </form>
@@ -270,21 +272,21 @@
         <ul class="pagination">
           <li class="page-item">
             <!-- When this is clicked, it should SHOW data-group="1" and hide data-group="2" -->
-            <button class="page-link" type="button" aria-label="Previous">
+            <button class="page-link" type="button" aria-label="Previous" id="show_group_1">
               &laquo;
             </button>
           </li>
           <li class="page-item">
             <!-- When this is clicked, it should SHOW data-group="1" and hide data-group="2" -->
-            <button class="page-link" type="button">1</button>
+            <button class="page-link" type="button" id="show_group_1">1</button>
           </li>
           <li class="page-item">
             <!-- When this is clicked, it should SHOW data-group="2" and hide data-group="1" -->
-            <button class="page-link" type="button">2</button>
+            <button class="page-link" type="button" id="show_group_2">2</button>
           </li>
           <li class="page-item">
             <!-- When this is clicked, it should SHOW data-group="2" and hide data-group="1" -->
-            <button class="page-link" type="button" aria-label="Next">
+            <button class="page-link" type="button" aria-label="Next" id="show_group_2">
               &raquo;
             </button>
           </li>
