@@ -143,8 +143,8 @@ termsForm.addEventListener("submit", (event) => {
 
 const groupOne = document.querySelectorAll('[data-group="1"]');
 const groupTwo = document.querySelectorAll('[data-group="2"]');
-const showGroupOne = document.querySelectorAll("#show_group_1");
-const showGroupTwo = document.querySelectorAll("#show_group_2");
+const showGroupOne = document.querySelectorAll(".show_group_1");
+const showGroupTwo = document.querySelectorAll(".show_group_2");
 
 showGroupOne.forEach((button) => {
   button.addEventListener("click", () => {
