@@ -24,3 +24,7 @@ img {
 .button {
   font-weight: bold;
 }
+
+img#image {
+  max-height: 240px;
+}
