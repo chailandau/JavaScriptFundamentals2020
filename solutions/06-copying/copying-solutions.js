@@ -17,9 +17,10 @@
  * user.email = "icanhascheeseburger@yahoo.com"; // This should not change newUser
  */
 const changeEmail = (user, newEmail) => {
-  let newUser = { ...user, email: newEmail };
-
-  return newUser;
+  return {
+    ...user,
+    email: newEmail,
+  };
 };
 
 /**
@@ -42,14 +43,19 @@ const changeEmail = (user, newEmail) => {
  * newItem.price = 10; // This should not change newItem
  */
 const addToCart = (shoppingCart, newItem) => {
-  let shoppingCartDeepCopy = JSON.parse(JSON.stringify(shoppingCart));
-  let newItemDeepCopy = JSON.parse(JSON.stringify(newItem));
+  // Solution 1
+  let cart = shoppingCart.concat(newItem);
+  for (let i = 0; i < cart.length; i++) {
+    cart[i] = { ...cart[i] };
+  }
+  return cart;
 
-  shoppingCartDeepCopy.push(newItemDeepCopy);
-
-  let newShoppingCart = [...shoppingCartDeepCopy];
-
-  return newShoppingCart;
+  // Solution 2
+  let cart = [];
+  for (let item of [...shoppingCart, newItem]) {
+    cart.push({ ...item });
+  }
+  return cart;
 };
 
 module.exports = {

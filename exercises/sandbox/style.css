@@ -1,0 +1,24 @@
+body {
+  padding: 5% 10%;
+  margin: 0 auto;
+}
+
+#sending {
+  display: none;
+}
+
+form {
+  padding-top: 5rem;
+}
+
+.user_output {
+  padding-bottom: 2rem;
+}
+
+#check_output {
+  padding-top: 1rem;
+}
+
+#put_button_here {
+  padding-top: 7rem;
+}
