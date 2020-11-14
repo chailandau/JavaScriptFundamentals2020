@@ -7,3 +7,24 @@
  * This is the API you will be using. The method will be GET.
  * https://ron-swanson-quotes.herokuapp.com/v2/quotes
  */
+
+let getQuotes = async () => {
+  try {
+    let data = await axios(
+      "https://ron-swanson-quotes.herokuapp.com/v2/quotes"
+    );
+    return data;
+  } catch (err) {
+    return console.error("Error:", err);
+  }
+};
+
+let generateQuote = getQuotes();
+let insertQuote = document.querySelector("#quote");
+let button = document.querySelector("#button");
+
+generateQuote.then((quote) => {
+  button.addEventListener("click", () => {
+    insertQuote.textContent = quote.data;
+  });
+});
