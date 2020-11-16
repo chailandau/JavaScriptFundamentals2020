@@ -19,12 +19,11 @@ let getQuotes = async () => {
   }
 };
 
-let generateQuote = getQuotes();
 let insertQuote = document.querySelector("#quote");
 let button = document.querySelector("#button");
-
-generateQuote.then((quote) => {
-  button.addEventListener("click", () => {
+button.addEventListener("click", () => {
+  let generateQuote = getQuotes();
+  generateQuote.then((quote) => {
     insertQuote.textContent = quote.data;
   });
 });

@@ -4,7 +4,7 @@
  *
  * Complete the Teacher Gradebook by using the module pattern. Use the studentGrades data that I have imported for you.
  *
- * 1) Create third method is used to debug and will return a list of all the students.Useful for debugging purposes
+ * 1) Create first method is used to debug and will return a list of all the students. Useful for debugging purposes.
  * @example
  * TeachersGradeBook.debug(); // returns all students
  *
@@ -21,8 +21,30 @@
 
 const { studentGrades } = require("./students");
 
+let getFailingStudents = [];
+let getPassingStudents = [];
+let debug = [];
+
 const TeacherGradeBook = (() => {
-  return {};
+  const findStudentAverage = () => {
+    // Find each student grade average
+    studentGrades.forEach((studentGrade) => {
+      let sum = studentGrade.grades.reduce((total, num) => {
+        return total + num;
+      }, 0);
+      let average = sum / studentGrade.grades.length;
+      if (average < 65) {
+        return getFailingStudents.push(studentGrade);
+      } else {
+        return getPassingStudents.push(studentGrade);
+      }
+    });
+  };
+
+  return {
+    getFailingStudents,
+    getPassingStudents,
+  };
 })();
 
 module.exports = {
