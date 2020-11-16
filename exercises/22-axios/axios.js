@@ -15,3 +15,34 @@
  *
  * Use the AXIOS library to make AJAX requests.
  */
+
+axios({
+  url: "https://rickandmortyapi.com/api/character/",
+  method: "GET",
+})
+  .then((response) => {
+    let characterList = response.data.results;
+    let dropdown = document.querySelector("#dropdown");
+    let image = document.querySelector("#get-schwifty");
+    let title = document.querySelector("#title-head");
+
+    characterList.forEach((character) => {
+      let newOption = document.createElement("option");
+      newOption.textContent = character.name;
+      newOption.value = character.id;
+      dropdown.appendChild(newOption);
+    });
+
+    dropdown.addEventListener("change", (event) => {
+      if (event.target.value === "initial") {
+        image.src = "https://i.ytimg.com/vi/UFFi9PWKDjg/maxresdefault.jpg";
+        title.textContent = "Rick and his homies, gettin' schwifty.";
+      } else {
+        let currentCharacter = characterList[event.target.value - 1];
+        image.src = currentCharacter.image;
+        title.textContent = currentCharacter.name;
+      }
+    });
+  }) // success+
+
+  .catch(() => console.log("error")); // failure
