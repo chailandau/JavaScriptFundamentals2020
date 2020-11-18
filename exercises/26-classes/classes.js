@@ -29,6 +29,39 @@
  * // [ {firstName:'Billy',lastName:'Joel',grades:[20,30,40,50]}, {firstName:'Luke',lastName:'Skywalker', grades:[0,0,0,100]} ]
  */
 
+class TeacherGradeBook {
+  constructor(students) {
+    this.students = students;
+  }
+  getPassingStudents() {
+    let passingStudents = [];
+    this.students.forEach((student) => {
+      let sum = student.grades.reduce((total, num) => {
+        return total + num;
+      }, 0);
+      let average = sum / student.grades.length;
+      if (average >= 65) {
+        passingStudents.push(student);
+      }
+    });
+    return passingStudents;
+  }
+
+  getFailingStudents() {
+    let failingStudents = [];
+    this.students.forEach((student) => {
+      let sum = student.grades.reduce((total, num) => {
+        return total + num;
+      }, 0);
+      let average = sum / student.grades.length;
+      if (average < 65) {
+        failingStudents.push(student);
+      }
+    });
+    return failingStudents;
+  }
+}
+
 /**
  * Ignore everything below this line. This is for the tests.
  */
