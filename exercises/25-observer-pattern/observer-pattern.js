@@ -53,29 +53,34 @@
    * For an example with the observer pattern,
    * @see https://codesandbox.io/s/observer-pattern-no-bundler-n2ukw?file=/src/index.js
    */
+  const currencyDropdown1 = document.querySelector("#currency1");
+  const currencyDropdown2 = document.querySelector("#currency2");
+  const amount = document.querySelector("#amount");
 
-  document
-    .querySelector("#currency2")
-    // I'm putting async here so that await will work
-    .addEventListener("change", async () => {
-      const currency1 = document.querySelector("#currency1").value;
-      const currency2 = document.querySelector("#currency2").value;
-
-      // Here I am checking to see if both dropdowns are complete.
-      // Only when both are complete, will I make the AJAX request.
-      if (currency1 && currency2) {
-        const response = await fakeAxios({
-          url: "http://pretendsite.com/currency",
-          method: "POST",
-          data: JSON.stringify({
-            currency1: currency1,
-            currency2: currency2,
-            amount: 1,
-          }),
-        });
-
-        // Displays the converted amount
-        document.querySelector("#amount").value = response.amount;
-      }
-    });
+  const currencyObserver = Observable();
+  const updateAmount = async () => {
+    const currency1 = currencyDropdown1.value;
+    const currency2 = currencyDropdown2.value;
+    if (currency1 && currency2) {
+      const response = await fakeAxios({
+        url: "http://pretendsite.com/currency",
+        method: "POST",
+        data: JSON.stringify({
+          currency1: currency1,
+          currency2: currency2,
+          amount: 1,
+        }),
+      });
+      amount.value = response.amount;
+    }
+  };
+  currencyObserver.subscribe(updateAmount);
+  currencyDropdown1.addEventListener("change", (e) => {
+    const newCurrency = e.target.value;
+    currencyObserver.notify(newCurrency);
+  });
+  currencyDropdown2.addEventListener("change", (e) => {
+    const newCurrency = e.target.value;
+    currencyObserver.notify(newCurrency);
+  });
 })();
